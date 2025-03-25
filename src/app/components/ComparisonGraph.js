@@ -10,20 +10,21 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "Week 1", percentile: 20 },
-  { name: "Week 2", percentile: 35 },
-  { name: "Week 3", percentile: 50 },
-  { name: "Week 4", percentile: 30 },
-];
 
-export default function ComparisonGraph() {
+
+export default function ComparisonGraph({percentile}) {
+    let data = [
+        { name: "Week 1", percentile: 20 },
+        { name: "Week 2", percentile: 35 },
+        { name: "Week 3", percentile: 50 },
+        { name: "Week 4", percentile: percentile },
+      ];
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
       <h2 className="font-bold text-lg mb-4">Comparison Graph</h2>
       <p className="mb-4">
-        You scored <span className="font-bold">30% percentile</span>, which is
-        lower than the average percentile (<span className="font-bold">72%</span>).
+        You scored <span className="font-bold">{percentile}% percentile</span>, which is
+        {(percentile<72)?" lower than":" greater or equal to"}  the average percentile (<span className="font-bold">72%</span>).
       </p>
 
       {/* Responsive container for the graph */}

@@ -8,6 +8,14 @@ import { FaHtml5 } from "react-icons/fa";
 import Modal from "./Modal";
 
 export default function SkillTestDashboard() {
+    // State for Quick Statistics
+  const [statistics, setStatistics] = useState({
+    rank: 1,
+    percentile: 30,
+    correctAnswers: "10 / 15",
+  });
+
+    // State for Modal Visibility
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
@@ -31,15 +39,22 @@ export default function SkillTestDashboard() {
                     <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:cursor-pointer"
                         onClick={() => setIsModalOpen(true)}>Update</button>
 
-                    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                    <Modal isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={(updatedStats) => {
+          setStatistics(updatedStats); // Update statistics dynamically
+          setIsModalOpen(false); // Close modal after saving
+        }}
+        initialData={statistics} // Pass current statistics to modal 
+        />
                 </div>
 
 
                 {/* Quick Statistics Section */}
-                <QuickStatistics />
+                <QuickStatistics statistics={statistics}/>
 
                 {/* Comparison Graph Section */}
-                <ComparisonGraph />
+                <ComparisonGraph percentile={statistics.percentile}/>
             </div>
 
             {/* Right Column */}

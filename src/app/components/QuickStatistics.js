@@ -1,8 +1,8 @@
-export default function QuickStatistics() {
+export default function QuickStatistics({statistics}) {
   const stats = [
-    { label: "YOUR RANK", value: "1", icon: "🏆" },
-    { label: "PERCENTILE", value: "30%", icon: "📊" },
-    { label: "CORRECT ANSWERS", value: "10 / 15", icon: "✔️" },
+    { label: "YOUR RANK", value: statistics.rank, icon: "🏆" },
+    { label: "PERCENTILE", value: `${statistics.percentile}%`, icon: "📊" },
+    { label: "CORRECT ANSWERS", value: statistics.correctAnswers, icon: "✔️" },
   ];
 
   return (

@@ -1,10 +1,26 @@
-import React from "react";
+"use client"
+import React , { useState } from "react";
 import { FaHtml5 } from "react-icons/fa"; // Import HTML icon
 import { AiOutlineArrowRight } from "react-icons/ai"; // Import arrow icon
 
-export default function Modal({ isOpen, onClose }) {
+export default function Modal({ isOpen, onClose, onSave, initialData }) {
+  
+    const [rank, setRank] = useState(initialData.rank);
+  const [percentile, setPercentile] = useState(initialData.percentile);
+  const [correctAnswers, setCorrectAnswers] = useState(
+    initialData.correctAnswers.split(" / ")[0]
+  );
+    
   if (!isOpen) return null; // Return nothing if modal is not open
 
+  // saving function 
+  const handleSave = () => {
+    onSave({
+      rank,
+      percentile,
+      correctAnswers: `${correctAnswers} / 15`,
+    });
+  };
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
@@ -33,7 +49,8 @@ export default function Modal({ isOpen, onClose }) {
               <input
                 type="number"
                 id="rank"
-                placeholder="Enter rank"
+                value={rank}
+                onChange={(e) => setRank(e.target.value)}
                 className="w-32 px-3 py-2 border border-blue-500 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               />
             </div>
@@ -54,7 +71,8 @@ export default function Modal({ isOpen, onClose }) {
               <input
                 type="number"
                 id="percentile"
-                placeholder="Enter percentile"
+                value={percentile}
+                onChange={(e) => setPercentile(e.target.value)}
                 className="w-32 px-3 py-2 border border-blue-500 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               />
             </div>
@@ -76,7 +94,8 @@ export default function Modal({ isOpen, onClose }) {
               <input
                 type="number"
                 id="score"
-                placeholder="Enter score"
+                value={correctAnswers}
+                onChange={(e) => setCorrectAnswers(e.target.value)}
                 className="w-32 px-3 py-2 border border-blue-500 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               />
             </div>
@@ -95,7 +114,9 @@ export default function Modal({ isOpen, onClose }) {
           </button>
 
           {/* Save Button */}
-          <button className="px-4 py-2 flex items-center gap-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button 
+          onClick={handleSave}
+          className="px-4 py-2 flex items-center gap-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             Save
             <AiOutlineArrowRight />
           </button>
