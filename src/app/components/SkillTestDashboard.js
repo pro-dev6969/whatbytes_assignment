@@ -63,7 +63,7 @@ export default function SkillTestDashboard() {
                 <SyllabusAnalysis />
 
                 {/* Question Analysis Section */}
-                <QuestionAnalysis />
+                <QuestionAnalysis correctAnswers={statistics.correctAnswers}/>
             </div>
         </div>
     );

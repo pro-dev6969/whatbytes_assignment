@@ -108,7 +108,7 @@ export default function Modal({ isOpen, onClose, onSave, initialData }) {
           {/* Cancel Button */}
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50"
+            className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 cursor-pointer"
           >
             Cancel
           </button>
@@ -116,7 +116,7 @@ export default function Modal({ isOpen, onClose, onSave, initialData }) {
           {/* Save Button */}
           <button 
           onClick={handleSave}
-          className="px-4 py-2 flex items-center gap-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          className="px-4 py-2 flex items-center gap-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer">
             Save
             <AiOutlineArrowRight />
           </button>
